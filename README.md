@@ -81,16 +81,20 @@ motto:     "If it blinks, it works. If it publishes, it ships."
 ### 📊 GitHub Stats
 
 <p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=pitchakorn-pkt&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&include_all_commits=true" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=pitchakorn-pkt&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" />
-</p>
-
-<p align="center">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=pitchakorn-pkt&theme=tokyonight&hide_border=true" />
 </p>
 
 <p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=pitchakorn-pkt&theme=tokyonight&no-frame=true&no-bg=true&margin-w=6&column=7" />
+  <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=pitchakorn-pkt&theme=tokyonight" />
+</p>
+
+<p align="center">
+  <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=pitchakorn-pkt&theme=tokyonight" />
+  <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=pitchakorn-pkt&theme=tokyonight" />
+</p>
+
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=pitchakorn-pkt&theme=tokyo-night&hide_border=true&area=true" />
 </p>
 
 ---
