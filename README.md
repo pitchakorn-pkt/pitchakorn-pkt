@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=28&duration=3000&pause=800&color=00E5FF&center=true&vCenter=true&width=600&lines=Hi+there%2C+I'm+Pitchakorn+%F0%9F%91%8B;Embedded+%2B+IoT+Developer;ESP32+%7C+Thread+%7C+MQTT+%7C+Python" alt="typing" />
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=28&duration=3000&pause=800&color=00E5FF&center=true&vCenter=true&width=600&lines=Hi+there%2C+I'm+Pitchakorn+%F0%9F%91%8B;Embedded+%2B+AIoT+Developer;ESP32+%7C+Thread+%7C+MQTT+%7C+Python" alt="typing" />
 </h1>
 
 <p align="center">
@@ -18,10 +18,10 @@
 
 ```yaml
 name:      Pitchakorn (CHAMP)
-role:      Embedded / IoT Developer
+role:      Embedded / AIoT Developer
 studying:  B.Eng. Computer Engineering, RMUTT
-focus:     ESP32 · OpenThread · MQTT · Modbus RTU · Computer Vision
-learning:  [Rust for embedded, RAG / LLM apps, Edge AI]
+focus:     ESP32 · OpenThread · MQTT · Modbus RTU · Computer Vision · RAG
+learning:  [Rust for embedded, Edge AI]
 motto:     "If it blinks, it works. If it publishes, it ships."
 ```
 
