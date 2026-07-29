@@ -117,51 +117,6 @@ motto:     "If it blinks, it works. If it publishes, it ships."
 
 ---
 
-### 🎓 Capstone Project — SafeEnergy (กำลังทำ)
-
-> **ระบบจัดการและวิเคราะห์การใช้สาธารณูปโภคอัจฉริยะด้วยปัญญาประดิษฐ์**
-> *Intelligent Utility Monitoring and Anomaly Detection System Using AI*
-
-โรงงานส่วนใหญ่มีมิเตอร์ไฟ/น้ำตัวเดียวที่ทางเข้า — เลยไม่รู้ว่าแผนกไหนใช้เท่าไร กว่าจะรู้ว่าน้ำรั่วก็เป็นเดือน
-และรู้ค่าไฟตอนบิลมาถึงซึ่งแก้อะไรไม่ทันแล้ว SafeEnergy แก้ด้วยการ **กระจายจุดวัด → ส่งข้อมูลเรียลไทม์ →
-เก็บเป็น time-series → AI หาความผิดปกติ → แจ้งเตือน/สั่งตัดอัตโนมัติ**
-
-```
-┌───────────────────────────────────────────────────────────────┐
-│ L4  PRESENTATION   Web Dashboard · HMI · LINE Notify          │
-├───────────────────────────────────────────────────────────────┤
-│ L3  APPLICATION    TimescaleDB/Supabase · API · AI · Worker   │
-├───────────────────────────────────────────────────────────────┤
-│ L2  GATEWAY        SIMATIC IOT2000 · MQTT broker · Node-RED   │  ── OT/IT segmentation
-├───────────────────────────────────────────────────────────────┤
-│ L1  FIELD          ESP32 Nodes · PZEM-004T · S7-1200 · VFD    │
-└───────────────────────────────────────────────────────────────┘
-        ยิ่งชั้นสูงยิ่งล่มได้โดยไม่กระทบความปลอดภัย — graceful degradation
-```
-
-| ชั้น | สิ่งที่ลงมือทำ | ทักษะที่ได้จากชั้นนี้ |
-|---|---|---|
-| **Field** | ESP32-E + PZEM-004T วัด V/I/P/kWh/PF/Hz, relay ตัดโหลด, FreeRTOS แยก task คนละ core, state machine `BOOT→SELF_TEST→NORMAL→TRIPPED→FAULT` | firmware ที่ต้องเชื่อถือได้จริง, edge-first protection (ตัดสินใจเองไม่รอ backend), ทำงานกับไฟ 220V อย่างปลอดภัย |
-| **Gateway** | MQTT broker (EMQX/HiveMQ) + TLS + ACL แยก credential ต่อบอร์ด, Node-RED ingest/rule flow, แยกวง OT ออกจาก IT | ออกแบบ topic/payload contract, network segmentation, protocol bridging (MQTT · Modbus · S7) |
-| **Application** | **Supabase (PostgreSQL) → TimescaleDB**, ingest แบบ batch + idempotent, ตาราง telemetry/hourly/monthly, rollup + retention ด้วย `pg_cron` แล้วเปลี่ยนเป็น continuous aggregate | time-series data modeling, SQL ระดับ production, ออกแบบ ingest ให้ย้ายฐานข้อมูลได้โดยไม่รื้อระบบ |
-| **Presentation** | Dashboard realtime ผ่าน MQTT over WebSocket, Grafana | data visualization, realtime web |
-| **AI** | anomaly detection บนข้อมูลดิบ (เก็บ raw ก่อน purge เพื่อเอาไว้เทรน) | feature engineering จาก sensor data, แยก "ผิดปกติจริง" ออกจาก noise |
-
-**บทเรียนวิศวกรรมที่ได้จริงจากโปรเจกต์นี้** — ส่วนที่แยก "ระบบที่ demo ผ่าน" ออกจาก "ระบบที่ใช้ได้จริง":
-
-- **ทำให้ทนการส่งซ้ำ** — MQTT QoS 1 ส่งซ้ำได้ ingest จึงต้อง idempotent (`ON CONFLICT DO NOTHING`) ไม่งั้นข้อมูลบวม
-- **กันแจ้งเตือนสแปม** — debounce ต้องเกินเกณฑ์ 3 ครั้งติด + แจ้งเฉพาะตอน *เปลี่ยนสถานะ* ไม่ใช่ทุกแพ็กเก็ต ระบบที่เตือนรัวคือระบบที่คนปิดเสียงทิ้งในสัปดาห์แรก
-- **ตรวจว่าตายให้ได้ 2 ทาง** — LWT จับกรณีหลุดแบบรู้ตัว + heartbeat query จับกรณีบอร์ดค้างแต่ยังต่อ MQTT อยู่ (เคสหลังอันตรายกว่าเพราะดูปกติ)
-- **เปลี่ยน config ได้โดยไม่ต้อง reflash** — เกณฑ์ป้องกันส่งลง topic `cmd` แบบ retained + ตั้งค่า Wi-Fi/broker ผ่าน captive portal เก็บลง NVS
-- **Fail-safe by design** — ทุกจุดควบคุมต้องตอบได้ว่า "ถ้าส่วนนี้พัง ระบบจะเป็นยังไง" คำตอบต้องเป็น *กลับสู่สถานะปลอดภัย* ไม่ใช่ *ไม่รู้*
-- **พิสูจน์ท่อก่อนต่อของจริง** — ยิง payload ปลอมให้ลง DB ให้ผ่านก่อน แล้วค่อยเอาบอร์ดจริงมาต่อ จะได้แยกออกว่าพังตรงไหน
-
-**สถานะตอนนี้:** firmware วัดค่า + MQTT + captive portal ทำงานบนบอร์ดจริงแล้ว · dashboard realtime ต่อได้
-พิสูจน์ท่อ end-to-end ด้วย EMQX ใน Docker + TLS มาแล้วรอบหนึ่ง (prototype) · **กำลังไปทาง Supabase → TimescaleDB**
-สำหรับชั้นเก็บข้อมูลจริง · ถัดไป: ingest + rollup/retention แล้วต่อชั้น AI
-
----
-
 ### 📊 GitHub Stats
 
 <p align="center">
