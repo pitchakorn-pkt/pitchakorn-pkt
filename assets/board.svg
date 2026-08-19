@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 330" width="420" height="330" role="img" aria-label="ESP32 sensor node">
+  <defs>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#150C1C"/><stop offset="100%" stop-color="#0A0610"/>
+    </linearGradient>
+    <linearGradient id="pcb" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241332"/><stop offset="100%" stop-color="#180D22"/>
+    </linearGradient>
+    <radialGradient id="ledGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF7AC6" stop-opacity=".85"/>
+      <stop offset="100%" stop-color="#FF7AC6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cardGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#C77DFF" stop-opacity=".25"/>
+      <stop offset="100%" stop-color="#C77DFF" stop-opacity="0"/>
+    </radialGradient>
+    <style type="text/css"><![CDATA[
+      @keyframes dash { to { stroke-dashoffset: -60 } }
+      @keyframes pulse { 0%,100%{opacity:.35} 50%{opacity:1} }
+      @keyframes rf { 0%{opacity:.15;transform:scale(.7)} 70%{opacity:0;transform:scale(1.5)} 100%{opacity:0;transform:scale(1.5)} }
+      .trace { stroke-dasharray: 6 8; animation: dash 2.2s linear infinite }
+      .led   { animation: pulse 1.8s ease-in-out infinite }
+      .wave  { transform-origin: 210px 44px; animation: rf 3s ease-out infinite }
+      .wave2 { animation-delay: 1s } .wave3 { animation-delay: 2s }
+    ]]></style>
+  </defs>
+
+  <rect x="1" y="1" width="418" height="328" rx="16" fill="url(#card)" stroke="#3A2A42"/>
+  <ellipse cx="210" cy="300" rx="180" ry="70" fill="url(#cardGlow)"/>
+
+  <!-- rf waves from the antenna -->
+  <g fill="none" stroke="#FF7AC6" stroke-width="1.6">
+    <circle class="wave" cx="210" cy="44" r="16" opacity=".18"/>
+    <circle class="wave wave2" cx="210" cy="44" r="16" opacity=".12"/>
+    <circle class="wave wave3" cx="210" cy="44" r="16" opacity=".08"/>
+  </g>
+
+  <!-- board -->
+  <rect x="66" y="58" width="288" height="230" rx="10" fill="url(#pcb)" stroke="#4A3454"/>
+  <rect x="74" y="66" width="272" height="214" rx="6" fill="none" stroke="#FF7AC6" stroke-opacity=".12"/>
+
+  <!-- mounting holes -->
+  <g fill="#0A0610" stroke="#4A3454"><circle cx="80" cy="72" r="4"/><circle cx="340" cy="72" r="4"/>
+    <circle cx="80" cy="274" r="4"/><circle cx="340" cy="274" r="4"/></g>
+
+  <!-- pin headers -->
+  <g fill="#C9A227" opacity=".75">
+    <rect x="70" y="96" width="9" height="7" rx="1.5"/><rect x="70" y="112" width="9" height="7" rx="1.5"/>
+    <rect x="70" y="128" width="9" height="7" rx="1.5"/><rect x="70" y="144" width="9" height="7" rx="1.5"/>
+    <rect x="70" y="160" width="9" height="7" rx="1.5"/><rect x="70" y="176" width="9" height="7" rx="1.5"/>
+    <rect x="70" y="192" width="9" height="7" rx="1.5"/><rect x="70" y="208" width="9" height="7" rx="1.5"/>
+    <rect x="341" y="96" width="9" height="7" rx="1.5"/><rect x="341" y="112" width="9" height="7" rx="1.5"/>
+    <rect x="341" y="128" width="9" height="7" rx="1.5"/><rect x="341" y="144" width="9" height="7" rx="1.5"/>
+    <rect x="341" y="160" width="9" height="7" rx="1.5"/><rect x="341" y="176" width="9" height="7" rx="1.5"/>
+    <rect x="341" y="192" width="9" height="7" rx="1.5"/><rect x="341" y="208" width="9" height="7" rx="1.5"/>
+  </g>
+
+  <!-- antenna trace -->
+  <path d="M210 58 L210 50 M198 50 L222 50 M201 44 L219 44 M204 38 L216 38"
+        stroke="#E9A8D9" stroke-width="2" fill="none" stroke-linecap="round" opacity=".9"/>
+
+  <!-- module can -->
+  <rect x="118" y="82" width="184" height="86" rx="6" fill="#2A1838" stroke="#5B4168"/>
+  <rect x="126" y="90" width="168" height="70" rx="4" fill="none" stroke="#FFFFFF" stroke-opacity=".06"/>
+  <text x="210" y="122" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+        font-size="17" letter-spacing="1.5" fill="#EBDCF2">ESP32</text>
+  <text x="210" y="142" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+        font-size="10" letter-spacing="1.5" fill="#A794B0">WiFi · BLE · Thread</text>
+
+  <!-- traces with flowing dashes -->
+  <g fill="none" stroke="#FF7AC6" stroke-width="1.8" stroke-linecap="round" opacity=".8">
+    <path class="trace" d="M118 130 L96 130 L96 148 L79 148"/>
+    <path class="trace" style="animation-delay:.4s" d="M302 116 L322 116 L322 100 L341 100"/>
+    <path class="trace" style="animation-delay:.8s" d="M302 150 L318 150 L318 196 L341 196"/>
+    <path class="trace" style="animation-delay:1.2s" d="M210 168 L210 214"/>
+  </g>
+
+  <!-- components -->
+  <rect x="104" y="196" width="30" height="18" rx="3" fill="#150C1C" stroke="#5B4168"/>
+  <text x="119" y="209" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#8E7C99">SHT</text>
+  <rect x="266" y="228" width="26" height="14" rx="3" fill="#150C1C" stroke="#5B4168"/>
+  <circle cx="150" cy="248" r="7" fill="#150C1C" stroke="#5B4168"/>
+  <text x="150" y="266" text-anchor="middle" font-family="ui-monospace, monospace" font-size="7.5" fill="#8E7C99">BOOT</text>
+
+  <!-- status LED -->
+  <circle cx="210" cy="222" r="14" fill="url(#ledGlow)" class="led"/>
+  <circle cx="210" cy="222" r="4.5" fill="#FF7AC6" class="led"/>
+
+  <!-- usb-c -->
+  <rect x="186" y="280" width="48" height="16" rx="7" fill="#2A1E30" stroke="#5B4168"/>
+  <rect x="192" y="285" width="36" height="6" rx="3" fill="#0A0610"/>
+
+  <text x="210" y="318" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+        font-size="10.5" letter-spacing="2.5" fill="#8E7C99">SENSOR NODE · MQTT</text>
+</svg>

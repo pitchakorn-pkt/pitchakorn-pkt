@@ -1,0 +1,47 @@
+name: Metrics
+
+on:
+  schedule:
+    - cron: "0 18 * * *"   # 01:00 ICT ทุกวัน
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Overview card
+        uses: lowlighter/metrics@latest
+        with:
+          filename: assets/metrics.svg
+          token: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
+          user: pitchakorn-pkt
+          base: header, repositories
+          config_timezone: Asia/Bangkok
+          plugin_lines: yes
+          extras_css: |
+            body { background: #0B0710; color: #CBB9D4; }
+            .header .title, h2, .title { color: #F0D9EC; }
+            .header .name { color: #E9A8D9; }
+            svg { border-color: #3A2A42; }
+            a { color: #FF7AC6; }
+
+      - name: Languages card
+        uses: lowlighter/metrics@latest
+        with:
+          filename: assets/metrics-languages.svg
+          token: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
+          user: pitchakorn-pkt
+          base: ""
+          config_timezone: Asia/Bangkok
+          plugin_languages: yes
+          plugin_languages_limit: 8
+          plugin_languages_details: bytes-size, percentage
+          extras_css: |
+            body { background: #0B0710; color: #CBB9D4; }
+            h2, .title { color: #F0D9EC; }
+            svg { border-color: #3A2A42; }
