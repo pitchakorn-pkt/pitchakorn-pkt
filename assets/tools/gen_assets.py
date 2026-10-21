@@ -197,7 +197,7 @@ def stack():
     for r, (title, items) in enumerate(STACK):
         top = r * (rh + cap)
         tp, _ = text_path(title, 20, top + 22, 12, name="JetBrainsMono", wght=600, spacing=2.4)
-        cells.append(f'<path class="cap" d="{tp}" fill="{BLUE}"/><rect class="rule" x="20" y="{top+30}" width="{W-40}" height="1" fill="{LINE}"/>')
+        cells.append(f'<path class="cap" d="{tp}" fill="{WHITE}"/><rect class="rule" x="20" y="{top+30}" width="{W-40}" height="1" fill="{LINE}"/>')
         for c, (slug, label, color) in enumerate(items):
             d = re.search(r' d="([^"]+)"', (TOOLS / "logos" / f"{slug}.svg").read_text()).group(1)
             cx = 12 + c * cw + cw / 2; cy = top + cap + 46
@@ -207,31 +207,24 @@ def stack():
 <circle cx="{cx}" cy="{cy}" r="34" fill="#131E3D" stroke="#26366A" stroke-width="2"/>
 <path d="M{cx-18} {cy-26} a30 30 0 0 1 22 -6" stroke="#ffffff" stroke-opacity=".16" stroke-width="4" fill="none" stroke-linecap="round"/>
 <g transform="translate({cx-15} {cy-15}) scale(1.25)"><path d="{d}" fill="{color}"/></g>
-<path class="lbl" d="{lp}" fill="{MUTED}"/></g>''')
+<path class="lbl" d="{lp}" fill="{WHITE}"/></g>''')
             i += 1
     write("stack.svg", f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}">
 <style>
 .b{{animation:bob 4s ease-in-out infinite}}
 @keyframes bob{{0%,100%{{transform:translateY(0)}}50%{{transform:translateY(-3px)}}}}
 @media (prefers-reduced-motion:reduce){{.b{{animation:none}}}}
-@media (prefers-color-scheme:light){{.lbl{{fill:#4A5378}}.cap{{fill:{DEEP}}}.rule{{fill:#C9D0EA}}}}
 </style>
 {"".join(cells)}
 </svg>''')
 
-# ---------- section titles: a small crescent + the word ----------
+# ---------- section titles ----------
 def title(slug, text):
     W, H = 420, 56
-    tp, tw = text_path(text, 0, 38, 28, wght=600)
-    x0 = (W - tw - 40) / 2
-    tp, _ = text_path(text, x0 + 40, 38, 28, wght=600)
-    mx = x0 + 14
+    tp, _ = text_path(text, W / 2, 38, 28, wght=600, anchor="middle")
     write(f"title-{slug}.svg", f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}">
-<style>@media (prefers-color-scheme:light){{.t{{fill:#1B2140}}}}</style>
-<mask id="cut"><rect width="{W}" height="{H}" fill="#fff"/><circle cx="{mx+6}" cy="24" r="11" fill="#000"/></mask>
-<circle cx="{mx}" cy="28" r="12" fill="{MOON}" mask="url(#cut)"/>
-<path class="t" d="{tp}" fill="{WHITE}"/>
-<rect x="{x0+40}" y="48" width="56" height="3" rx="1.5" fill="{BLUE}"/>
+<path d="{tp}" fill="{WHITE}"/>
+<rect x="{W/2-28}" y="48" width="56" height="3" rx="1.5" fill="{BLUE}"/>
 </svg>''')
 
 if __name__ == "__main__":
