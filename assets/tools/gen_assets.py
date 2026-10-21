@@ -230,5 +230,5 @@ def title(slug, text):
 if __name__ == "__main__":
     banner()
     music(*SONG); stack()
-    for slug, text in (("stack", "Tech Stack"), ("contrib", "Contributions"), ("projects", "Projects")):
+    for slug, text in (("stack", "Tech Stack"), ("hours", "Coding Hours"), ("projects", "Projects")):
         title(slug, text)

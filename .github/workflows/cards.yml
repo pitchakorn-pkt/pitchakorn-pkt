@@ -1,0 +1,31 @@
+name: Profile cards
+
+# กราฟช่วงเวลา commit + การ์ดโปรเจกต์ จากข้อมูล GitHub จริง
+on:
+  schedule:
+    - cron: "0 19 * * *"   # 02:00 ICT ทุกวัน
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install fonttools pillow uharfbuzz
+      - name: Build cards
+        working-directory: assets/tools
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python gen_live.py
+      - name: Commit if changed
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add assets/hours.svg assets/projects
+          git diff --cached --quiet || { git commit -m "Update profile cards - [Skip GitHub Action]" && git push; }

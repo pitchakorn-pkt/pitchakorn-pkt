@@ -15,21 +15,27 @@
 </p>
 
 <p align="center">
-  <img src="assets/title-contrib.svg" width="300" alt="Contributions" />
+  <img src="assets/title-hours.svg" width="300" alt="Coding Hours" />
 </p>
 
 <p align="center">
-  <img src="profile-3d-contrib/profile-night.svg" width="100%" alt="3D contribution calendar" />
+  <img src="assets/hours.svg" width="100%" alt="Commits by hour of day (Asia/Bangkok)" />
 </p>
 
 <p align="center">
   <img src="assets/title-projects.svg" width="300" alt="Projects" />
 </p>
 
-| | Project | What it does | Stack |
-|---|---|---|---|
-| AI | [**rod-mai-rod**](https://github.com/pitchakorn-pkt/rod-mai-rod) | เว็บวางแผนเดินทางในไทยให้ปลอดภัย เช็กอากาศ ณ เวลาที่ไปถึงแต่ละจุด น้ำท่วมจากดาวเทียม มีผู้ช่วย AI แก้ทริปผ่านแชท · [ใช้งานจริง](https://rod-mai-rod.tntproduction.tech) | `FastAPI` `PostgreSQL` `Next.js` `LLM` |
-| AI | [**chuayduay**](https://github.com/pitchakorn-pkt/chuayduay) | ผู้ช่วยแก้ปัญหามือถือ/คอมภาษาไทย agentic RAG 8 โมดูล ตอบพร้อมแหล่งอ้างอิง | `FastAPI` `PostgreSQL` `RAG` `Docker` |
-| AI | [**SENTINEL-AI**](https://github.com/Mrbeer19/SENTINEL-AI) | security dashboard ที่ให้ LLM ในเครื่องสืบหลักฐานแล้วให้คนอนุมัติการ block (กำลังทำ) | `Python` `Ollama` `React` `SQLite` |
-| Vision | [**led-colorwatch**](https://github.com/pitchakorn-pkt/led-colorwatch) | ตรวจจับสี LED เสียผ่านกล้อง + หน้าเว็บ รันได้ทั้ง Win/macOS/Linux | `Python` `OpenCV` |
-| Embedded | [**esp32c5-thread**](https://github.com/pitchakorn-pkt/esp32c5-thread) | ESP32-C5 Thread device อ่าน SHT40 ส่งขึ้น MQTT ผ่าน NAT64 + web provisioning | `ESP-IDF` `OpenThread` `MQTT` |
+<p align="center">
+  <a href="https://github.com/pitchakorn-pkt/rod-mai-rod"><img src="assets/projects/rod-mai-rod.svg" width="100%" alt="rod-mai-rod" /></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/pitchakorn-pkt/chuayduay"><img src="assets/projects/chuayduay.svg" width="49%" alt="chuayduay" /></a>
+  <a href="https://github.com/Mrbeer19/SENTINEL-AI"><img src="assets/projects/SENTINEL-AI.svg" width="49%" alt="SENTINEL-AI" /></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/pitchakorn-pkt/led-colorwatch"><img src="assets/projects/led-colorwatch.svg" width="49%" alt="led-colorwatch" /></a>
+  <a href="https://github.com/pitchakorn-pkt/esp32c5-thread"><img src="assets/projects/esp32c5-thread.svg" width="49%" alt="esp32c5-thread" /></a>
+</p>
