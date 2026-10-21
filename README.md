@@ -23,10 +23,6 @@
 </p>
 
 <p align="center">
-  <img src="assets/metrics-habits.svg" alt="Coding habits" />
-</p>
-
-<p align="center">
   <img src="assets/title-projects.svg" width="300" alt="Projects" />
 </p>
 
